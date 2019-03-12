@@ -1,3 +1,6 @@
+Book Library Project for React Course @ SoftUni
+by Cvetomir Georgiev
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 const Register = ({ authUser, ...props }) => (
     <AuthUserContext.Consumer>
         {authUser =>
-            !authUser ? <RegisterForm {...props} /> : <Redirect to='/' />
+            authUser ? <Redirect to='/' /> : <RegisterForm {...props} />
         }
     </AuthUserContext.Consumer>
 );

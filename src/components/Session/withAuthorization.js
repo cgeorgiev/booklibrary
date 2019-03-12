@@ -6,6 +6,7 @@ import { withFirebase } from "../Firebase";
 
 const withAuthorization = condition => Component => {
   class WithAuthorization extends React.Component {
+    
     componentDidMount() {
       this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {

@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 const Login = ({ authUser, ...props }) => (
     <AuthUserContext.Consumer>
         {authUser =>
-            !authUser ? <LoginForm {...props} /> : <Redirect to='/' />
+            authUser ? <Redirect to='/' /> : <LoginForm {...props} />
         }
     </AuthUserContext.Consumer>
 );
@@ -24,7 +24,7 @@ class LoginForm extends Component {
 		this.state = { ...INITIAL_STATE };
 
 		//this.handleChange = this.handleChange.bind(this);
-	}
+    }
 
 	handleChange = event => {
 		this.setState({

@@ -14,11 +14,30 @@ const withAuthentication = Component => {
     }
 
     componentDidMount() {
+      
       this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
         authUser
-          ? this.setState({ authUser })
+          ? this.setState({ authUser: authUser })
           : this.setState({ authUser: null });
+          
+          if(authUser) {
+            var user = this.props.firebase.user(authUser.uid)
+            .once('value')
+            .then(snapshot => {
+                const dbUser = snapshot.val();
+                //console.log(dbUser.role);
+                //this.setState({ authUser: authUser })
+                const dbUserRole = (dbUser.role ? dbUser.role : 'user');
+                const addRole = { role: dbUserRole };
+                const addRoleToAuthUser = Object.assign(authUser, addRole);
+                this.setState({ authUser: addRoleToAuthUser })
+            });
+          }
+
       });
+
+     
+
     }
 
     componentWillUnmount() {
